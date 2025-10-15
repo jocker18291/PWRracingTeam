@@ -3,6 +3,7 @@
 
 struct Point {
     double x, y;
+    int kat(Point a, Point b, Point c);
 };
 
 #endif
