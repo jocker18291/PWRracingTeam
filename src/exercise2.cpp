@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "../include/exercise2.hpp"
 
 using namespace std;
