@@ -7,7 +7,7 @@ struct Point {
     double x, y;
     int angle(Point a, Point b, Point c);
     double dist(Point a, Point b);
-    std::vector<std::vector<int>> convexHull(std::vector<std::vector<int>> point);
+    std::vector<std::vector<int>> convexHull(std::vector<std::vector<int>> point, int n);
 };
 
 #endif
