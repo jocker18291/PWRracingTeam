@@ -1,12 +1,5 @@
 #include <iostream>
+#include "../include/exercise2.hpp"
 
 using namespace std;
 
-struct Point {
-    double x, y;
-};
-
-int main() {
-
-    return 0;
-}
