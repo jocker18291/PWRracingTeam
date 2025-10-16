@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 #include "../include/exercise2.hpp"
 
 using namespace std;
@@ -67,4 +68,21 @@ double Point::minWidth(vector<vector<double>> points, int n) {
     for(auto& p : hull) poly.push_back({p[0], p[1]});
 
     double minWidth = 1e18; //we set a very large number
+    //rotating calipers
+    for (int i = 0, j = 1; i < m; i++) {
+        int ni = (i + 1) % m; // next point
+        //side vector
+        double dx = poly[ni].x - poly[i].x;
+        double dy = poly[ni].y - poly[i].y;
+        double len = sqrt(dx*dx + dy*dy);
+
+        while(fabs((poly[(j+1) % m].x - poly[i].x) * dy - (poly[(j+1) % m].y - poly[i].y)*dx) > fabs((poly[j].x - poly[i].x) * dy - (poly[j].y - poly[i].y) * dx)) {
+            j = (j + 1) % m;
+        } // move j until the distance to the next point decreases
+
+        double distance = fabs((poly[j].x - poly[i].x) * dy - (poly[j].y - poly[i].y) * dx) / len;
+        minWidth = min(minWidth, distance);
+    };
+
+    return minWidth;
 }
