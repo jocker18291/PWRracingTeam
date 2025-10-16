@@ -55,3 +55,16 @@ vector<vector<double>> Point::convexHull(vector<vector<double>> points, int n) {
     
     return res;
 }
+
+double Point::minWidth(vector<vector<double>> points, int n) {
+    if(n < 3) return 0.0;
+
+    auto hull = convexHull(points, n); // here we find a convex hull
+    int m = hull.size();
+    if (m < 3) return 0.0;
+
+    vector<Point> poly; //now we convert every point to Point variable in a vector
+    for(auto& p : hull) poly.push_back({p[0], p[1]});
+
+    double minWidth = 1e18; //we set a very large number
+}
