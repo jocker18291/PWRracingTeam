@@ -19,7 +19,7 @@ double Point::dist(Point a, Point b) { //calculating the square of a distance
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
 }
 
-vector<vector<double>> Point::convexHull(vector<vector<int>> points, int n) {
+vector<vector<double>> Point::convexHull(vector<vector<double>> points, int n) {
     if (n < 3) return {{-1}}; // convex hull not possible with fewer than 3 points
 
     vector<Point> a; //converting 2d points into vector of Point type
