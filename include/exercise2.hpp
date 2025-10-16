@@ -7,7 +7,8 @@ struct Point {
     double x, y;
     static int angle(Point a, Point b, Point c);
     static double dist(Point a, Point b);
-    static std::vector<std::vector<double>> convexHull(std::vector<std::vector<int>> point, int n);
+    static std::vector<std::vector<double>> convexHull(std::vector<std::vector<double>> point, int n);
+    static double minWidth(std::vector<std::vector<double>> points);
 };
 
 #endif
