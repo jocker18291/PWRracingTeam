@@ -53,3 +53,7 @@ The `closestPair()` function uses the **Divide and Conquer** approach to find th
 3. **Closest Pair**
    - **Edge Case**: If there are fewer than 2 points, there is no valid closest pair. The function will return `0.0` in such cases.
    - **Performance**: The divide and conquer approach has a time complexity of \(O(n log n)\), which is much more efficient than the brute force \(O(n^2)\) approach.
+
+## Compilation
+To compile the project, use the following command:
+`g++ src/main.cpp src/exercise2.cpp include/exercise2.hpp -o program.o`
