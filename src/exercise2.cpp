@@ -130,4 +130,26 @@ double Point::closestPair(vector<Point>& points, int n) {
 
         return minDist;
     };
+
+    return closest(0, n);
+}
+
+vector<vector<double>> Point::findClosestPair(vector<vector<double>>& points, int n) {
+    vector<Point> pointList;
+    for(auto& p : points) { //converting vector of a vector to a vector of Point type
+        pointList.push_back({p[0], p[1]});
+    }
+
+    double closestDist = closestPair(pointList, n);
+    vector<vector<double>> result;
+    for(int i  = 0; i < n; ++i) {
+        for(int j = i + 1; j < n; ++j) {
+            if(sqrt(dist(pointList[i], pointList[j])) == closestDist) {
+                result.push_back({pointList[i].x, pointList[i].y});
+                result.push_back({pointList[j].x, pointList[j].y});
+                return result;
+            }
+        }
+    }
+    return result;
 }
