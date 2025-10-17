@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include "../include/exercise2.hpp"
 
 using namespace std;
@@ -85,4 +86,48 @@ double Point::minWidth(vector<vector<double>> points, int n) {
     };
 
     return minWidth;
+}
+
+double Point::closestPair(vector<Point>& points, int n) {
+    if(n < 2) return 0.0; //there is no closest pair without a pair
+
+    sort(points.begin(), points.end(), [](Point a, Point b) { return a.x < b.x;}); // sort by x coordinate
+
+    auto distance = [](Point a, Point b) { //calculate the distance between two points
+        return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+    };
+
+    function<double(int, int)> closest = [&](int left, int right){ //helper function for divide and conquer algorithm
+        if (right - left <= 3) { //when there are up to three points in a strip we calculate the distance between them all
+            double minDist = numeric_limits<double>::infinity();
+            for(int i = left; i < right; ++i) {
+                for(int j = i + 1; j < right; ++j) {
+                    minDist = min(minDist, distance(points[i], points[j]));
+                }
+            }
+            return minDist;
+        }
+
+        int mid = (left + right) / 2;
+        double midX = points[mid].x;
+        double leftDist = closest(left, mid); //recurence to make strips
+        double rightDist = closest(mid, right); //recurence to make strips
+
+        double minDist = min(leftDist, rightDist);
+
+        vector<Point> strip; //create the strip of points that are closer or equal to minDist
+        for(int i = left; i < right; ++i) {
+            if (abs(points[i].x - midX) < minDist) {
+                strip.push_back(points[i]);
+            }
+        }
+
+        for (int i = 0; i < strip.size(); ++i) { //amongst those points we calculate the minDist
+            for (int j = i + 1; j < strip.size() && (strip[j].y - strip[i].y) < minDist; ++j) {
+                minDist = min(minDist, distance(strip[i], strip[j]));
+            }
+        }
+
+        return minDist;
+    };
 }
