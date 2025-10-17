@@ -9,6 +9,7 @@ struct Point {
     static double dist(Point a, Point b);
     static std::vector<std::vector<double>> convexHull(std::vector<std::vector<double>> point, int n);
     static double minWidth(std::vector<std::vector<double>> points, int n);
+    static double closestPair(std::vector<Point>& points);
 };
 
 #endif
