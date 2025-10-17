@@ -35,4 +35,9 @@ int main(int argc, char* argv[]) {
         cout << "(" << p[0] << ", " << p[1] << ") ";
     }
     cout << endl;
+
+    //minimal width
+    double width = Point::minWidth(points, n);
+    cout << fixed << setprecision(4);
+    cout << "Lines: d=" << width << endl;
 }
